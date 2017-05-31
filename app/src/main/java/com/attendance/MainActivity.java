@@ -66,11 +66,21 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    /**
+     * 안드로이드에서 메인스레드에 stream을 생성할 수 없게 만들어 비동기 처리가 필요함(AsyncTask같은)
+     * 모든 안드로이드 버전이 그러한지는 잘 모르겠음
+     */
     public class SendPostRequest extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
         }
 
+        /**
+         * 스레드안에서 해야하는 일 작성
+         *
+         * @param arg0
+         * @return
+         */
         protected String doInBackground(String... arg0) {
             try {
                 String ip = arg0[0];
@@ -129,6 +139,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        /**
+         * 비동기 처리이기 때문에 완료되면 실행되는 콜백
+         * @param result
+         */
         @Override
         protected void onPostExecute(String result) {
             response = result;
