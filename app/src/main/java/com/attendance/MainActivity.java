@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //response = request("http://localhost:52273/list");
-        //HtpUtil.execute();
+
         new SendPostRequest().execute("아아피주소", "포트");
 
         mTextMessage = (TextView) findViewById(R.id.message);
